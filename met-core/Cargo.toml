@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/protocol"]
+members = ["crates/protocol", "crates/daemon"]
 
 [workspace.package]
 version = "0.1.0"
@@ -12,6 +12,12 @@ repository = "https://github.com/MeticulousHome/meticulous-backend"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 proptest = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "io-util", "io-std"] }
+tokio-serial = "5"
+md-5 = "0.10"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

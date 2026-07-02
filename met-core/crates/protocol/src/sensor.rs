@@ -4,7 +4,7 @@
 use serde::Serialize;
 use serde_json::{json, Value};
 
-use crate::pynum::{safe_float, safe_float_with_nan, PyFloat};
+use crate::pynum::{format_py_float, safe_float, safe_float_with_nan, PyFloat};
 
 /// Current state of all machine sensors.
 ///
@@ -86,6 +86,37 @@ impl SensorData {
         Self::from_args(&args)
     }
 
+    /// Serialize back to the wire argument list (Python `to_args`), used by
+    /// the emulator to rebuild `Sensors,` lines from fixture data. Keeps the
+    /// bandheater current/power argument swap.
+    pub fn to_args(&self) -> Vec<String> {
+        vec![
+            format_py_float(self.external_1),
+            format_py_float(self.external_2),
+            format_py_float(self.bar_up),
+            format_py_float(self.bar_mid_up),
+            format_py_float(self.bar_mid_down),
+            format_py_float(self.bar_down),
+            format_py_float(self.tube),
+            format_py_float(self.motor_temp),
+            format_py_float(self.lam_temp),
+            format_py_float(self.motor_position),
+            format_py_float(self.motor_speed),
+            format_py_float(self.motor_power),
+            format_py_float(self.motor_current),
+            format_py_float(self.bandheater_current),
+            format_py_float(self.bandheater_power),
+            format_py_float(self.pressure_sensor),
+            format_py_float(self.adc_0),
+            format_py_float(self.adc_1),
+            format_py_float(self.adc_2),
+            format_py_float(self.adc_3),
+            if self.water_status { "true" } else { "false" }.to_string(),
+            self.motor_thermistor.to_py_string(),
+            self.weight_prediction.to_py_string(),
+        ]
+    }
+
     /// The payload of the `sensors` socket.io event
     /// (Python `to_sio_sensors`).
     pub fn to_sio_sensors(&self) -> Value {
@@ -159,5 +190,36 @@ fn strip_color_labels(input: &str) -> String {
         }
         let consumed = s.len() - after_name.len() + RESET.len();
         Some(consumed)
+    }
+}
+
+impl Default for SensorData {
+    /// Python dataclass defaults.
+    fn default() -> Self {
+        SensorData {
+            external_1: 0.0,
+            external_2: 0.0,
+            bar_up: 0.0,
+            bar_mid_up: 0.0,
+            bar_mid_down: 0.0,
+            bar_down: 0.0,
+            tube: 0.0,
+            motor_temp: 0.0,
+            lam_temp: 0.0,
+            motor_position: 0.0,
+            motor_speed: 0.0,
+            motor_power: 0.0,
+            motor_current: 0.0,
+            bandheater_power: 0.0,
+            bandheater_current: 0.0,
+            pressure_sensor: 0.0,
+            adc_0: 0.0,
+            adc_1: 0.0,
+            adc_2: 0.0,
+            adc_3: 0.0,
+            water_status: false,
+            motor_thermistor: PyFloat::Num(0.0),
+            weight_prediction: PyFloat::Num(0.0),
+        }
     }
 }

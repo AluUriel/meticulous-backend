@@ -112,6 +112,35 @@ pub fn strip_crlf(s: &str) -> &str {
     s.trim_matches(|c| c == '\r' || c == '\n')
 }
 
+/// Mirror of Python `str(float)` for the value ranges the protocol uses:
+/// always keeps a decimal point (`0.0`, not `0`). Divergence (documented in
+/// met-core/README.md): CPython switches to e-notation below 1e-4 / above
+/// 1e16; this does not, and none of the wire values are in that range.
+pub fn format_py_float(v: f64) -> String {
+    if v.is_nan() {
+        return "nan".to_string();
+    }
+    if v.is_infinite() {
+        return if v > 0.0 { "inf" } else { "-inf" }.to_string();
+    }
+    let s = format!("{v}");
+    if s.contains('.') || s.contains('e') {
+        s
+    } else {
+        format!("{s}.0")
+    }
+}
+
+impl PyFloat {
+    /// Mirror of Python `str()` on a `safe_float_with_nan` value.
+    pub fn to_py_string(self) -> String {
+        match self {
+            PyFloat::Num(v) => format_py_float(v),
+            PyFloat::NanString => "NaN".to_string(),
+        }
+    }
+}
+
 /// Mirror of `urllib.parse.unquote` with `errors="replace"`: decode `%XX`
 /// escapes as UTF-8, leave malformed escapes literal, replace invalid UTF-8.
 pub fn unquote(s: &str) -> String {

@@ -4,7 +4,7 @@
 use serde::Serialize;
 use serde_json::{json, Value};
 
-use crate::pynum::{py_float, py_int};
+use crate::pynum::{format_py_float, py_float, py_int};
 
 /// ESP firmware and status information.
 ///
@@ -74,6 +74,28 @@ impl EspInfo {
         Some(info)
     }
 
+    /// Serialize back to the wire argument list (Python `to_args`), used by
+    /// the emulator to rebuild `ESPInfo,` lines.
+    pub fn to_args(&self) -> Vec<String> {
+        vec![
+            self.firmware_v.clone(),
+            self.esp_pinout.to_string(),
+            format_py_float(self.main_voltage),
+            self.color.clone(),
+            self.serial_number.clone(),
+            self.batch_number.clone(),
+            self.build_date.clone(),
+            self.scale_module.clone(),
+            format_py_float(self.partial_retraction),
+            if self.auto_purge_after_shot {
+                "true"
+            } else {
+                "false"
+            }
+            .to_string(),
+        ]
+    }
+
     /// The socket.io representation (Python `to_sio`), snake_case keys.
     pub fn to_sio(&self) -> Value {
         json!({
@@ -88,5 +110,23 @@ impl EspInfo {
             "partial_retraction": self.partial_retraction,
             "auto_purge_after_shot": self.auto_purge_after_shot,
         })
+    }
+}
+
+impl Default for EspInfo {
+    /// Python dataclass defaults.
+    fn default() -> Self {
+        EspInfo {
+            firmware_v: "0.0.0".to_string(),
+            esp_pinout: 0,
+            main_voltage: 0.0,
+            color: String::new(),
+            serial_number: String::new(),
+            batch_number: String::new(),
+            build_date: String::new(),
+            scale_module: String::new(),
+            partial_retraction: 45.0,
+            auto_purge_after_shot: false,
+        }
     }
 }

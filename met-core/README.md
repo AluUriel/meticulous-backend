@@ -10,9 +10,32 @@ note in the engineering vault.
   line-based UART protocol between the ESP32 and the backend. Pure: no IO,
   no globals, no async. Mirrors `esp_serial/data.py` plus the line dispatch
   in `machine.py`.
+- **`crates/daemon`** (`met-daemon`) — phase 2: the serial daemon that owns
+  the ESP32 UART + GPIO. Sans-IO read-loop state machine (`reader.rs`,
+  a pure port of `Machine._read_data`: boot/reset watchdog, crash-trace
+  collection, shot lifecycle timing, 500 ms disconnect alarm) driven by a
+  transport — real serial (`tokio-serial` + Fika GPIO reset pins via
+  `gpiod`, Linux only) or the fixture-replay emulator (same
+  `emulated.*.json` files, same `action,start|stop|purge|home` reactions,
+  same quirks). Publishes typed `MachineEvent`s (broadcast) and
+  `MachineSnapshot`s (watch); encodes `action,` frames and hashed profile
+  JSON (`send_json_with_hash` parity, md5-verified against CPython).
 
-Planned next (phase 2+): `crates/daemon` (tokio serial + GPIO owner),
-`crates/ipc` (Unix-socket contract with the Python backend).
+  Run it without hardware:
+
+  ```sh
+  cd met-core
+  BACKEND=EMULATOR METICULOUS_EMULATION_DIR=../esp_serial/connection \
+    cargo run -p met-daemon
+  # stdin accepts: start stop tare purge home info reset bootloader pause resume
+  ```
+
+  What stays in Python on purpose (until phase 3+): sounds, shot/DB
+  management, notifications, alarm UX, esptool flashing, config sync, REST
+  and socket.io. The daemon reports; the backend decides.
+
+Planned next (phase 3): `crates/ipc` — the Unix-socket contract that lets
+Python's `Machine` become a thin client of this daemon behind a config flag.
 
 ## Parity testing
 

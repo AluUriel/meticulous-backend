@@ -4,7 +4,9 @@
 use serde::Serialize;
 use serde_json::{json, Map, Value};
 
-use crate::pynum::{safe_float, safe_float_with_nan, strip_crlf, unquote, PyFloat};
+use crate::pynum::{
+    format_py_float, safe_float, safe_float_with_nan, strip_crlf, unquote, PyFloat,
+};
 
 /// Machine state derived from the reported profile (Python `MachineState`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -121,6 +123,68 @@ impl ShotData {
         })
     }
 
+    /// Mirror of Python `clone_with_time_and_state`: same datapoint stamped
+    /// with shot time, extraction state and profile time.
+    pub fn clone_with_time_and_state(
+        &self,
+        time: i64,
+        is_extracting: bool,
+        profile_time: i64,
+    ) -> ShotData {
+        ShotData {
+            time,
+            is_extracting,
+            profile_time,
+            ..self.clone()
+        }
+    }
+
+    /// Serialize back to the wire argument list (Python `to_args`), used by
+    /// the emulator to rebuild `Data,` lines from fixture data. `state`,
+    /// `time` and extraction flags are not part of the wire format.
+    pub fn to_args(&self) -> Vec<String> {
+        let mut args = vec![
+            self.pressure.to_py_string(),
+            self.flow.to_py_string(),
+            self.weight.to_py_string(),
+            if self.stable_weight { "S" } else { "U" }.to_string(),
+            self.temperature.to_py_string(),
+            self.status.clone().unwrap_or_default(),
+            self.profile.clone().unwrap_or_default(),
+        ];
+        match &self.main_controller_kind {
+            Some(kind) => {
+                args.push(kind.clone());
+                args.push(format_py_float(self.main_setpoint));
+            }
+            None => {
+                args.push("none".to_string());
+                args.push("0.0".to_string());
+            }
+        }
+        match &self.aux_controller_kind {
+            Some(kind) => {
+                args.push(kind.clone());
+                args.push(format_py_float(self.aux_setpoint));
+                args.push(
+                    if self.is_aux_controller_active {
+                        "true"
+                    } else {
+                        "false"
+                    }
+                    .to_string(),
+                );
+            }
+            None => {
+                args.push("none".to_string());
+                args.push("0.0".to_string());
+                args.push("false".to_string());
+            }
+        }
+        args.push(self.gravimetric_flow.to_py_string());
+        args
+    }
+
     /// The payload of the `status` socket.io event (Python `to_sio`).
     pub fn to_sio(&self) -> Value {
         let mut setpoints = Map::new();
@@ -162,5 +226,30 @@ fn controller_kind(arg: Option<&&str>) -> Option<String> {
         None
     } else {
         Some(kind.to_string())
+    }
+}
+
+impl Default for ShotData {
+    /// Python dataclass defaults.
+    fn default() -> Self {
+        ShotData {
+            pressure: PyFloat::Num(0.0),
+            flow: PyFloat::Num(0.0),
+            weight: PyFloat::Num(0.0),
+            stable_weight: false,
+            temperature: PyFloat::Num(20.0),
+            status: Some(String::new()),
+            profile: Some(String::new()),
+            time: -1,
+            profile_time: -1,
+            state: MachineState::Idle,
+            is_extracting: false,
+            gravimetric_flow: PyFloat::Num(0.0),
+            main_controller_kind: None,
+            main_setpoint: -1.0,
+            aux_controller_kind: None,
+            aux_setpoint: -1.0,
+            is_aux_controller_active: false,
+        }
     }
 }

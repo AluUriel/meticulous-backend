@@ -6,8 +6,9 @@ use serde_json::{json, Value};
 
 use crate::pynum::py_int;
 
-/// Events the machine's physical controls can emit.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+/// Events the machine's physical controls can emit. Serializes as the
+/// Python enum member name (`"ENCODER_CLOCKWISE"`, ...).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[allow(missing_docs)]
 pub enum ButtonEvent {
     EncoderClockwise,
@@ -104,8 +105,14 @@ impl ButtonEvent {
     }
 }
 
+impl Serialize for ButtonEvent {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.name())
+    }
+}
+
 /// A button event with the time since the previous one.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ButtonEventData {
     /// The decoded event.
     pub event: ButtonEvent,
