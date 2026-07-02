@@ -90,3 +90,10 @@ jobs:
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
         run: cargo build --release --target aarch64-unknown-linux-gnu
+
+      - name: Upload met-daemon binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: met-daemon-aarch64
+          path: met-core/target/aarch64-unknown-linux-gnu/release/met-daemon
+          if-no-files-found: error

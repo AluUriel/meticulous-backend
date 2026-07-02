@@ -7,3 +7,7 @@ images/profile-images
 config
 .git
 .github*
+met-core/target
+.venv*
+.compare-*
+espresso-profile-converter-*

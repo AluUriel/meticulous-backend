@@ -51,9 +51,13 @@ pub async fn serve(
 /// client uses.
 pub fn socket_path_from_env() -> PathBuf {
     std::env::var("METICULOUS_IPC_SOCKET")
-        .unwrap_or_else(|_| "/tmp/met-daemon.sock".to_string())
+        .unwrap_or_else(|_| DEFAULT_SOCKET_PATH.to_string())
         .into()
 }
+
+/// Default socket path, matching the systemd unit (`RuntimeDirectory`) and
+/// the Python client. Overridable via `METICULOUS_IPC_SOCKET`.
+pub const DEFAULT_SOCKET_PATH: &str = "/run/met-daemon/ipc.sock";
 
 async fn serve_client(
     stream: UnixStream,

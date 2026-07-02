@@ -5,7 +5,7 @@
 //! - `BACKEND`: `FIKA` (default on the machine), `USB`, or `EMULATOR`
 //! - `EMULATION_SPEED`: percent, 100 = real time
 //! - `METICULOUS_EMULATION_DIR`: directory with `emulated.*.json` fixtures
-//! - `METICULOUS_IPC_SOCKET`: Unix socket path (default /tmp/met-daemon.sock)
+//! - `METICULOUS_IPC_SOCKET`: Unix socket path (default /run/met-daemon/ipc.sock)
 //!
 //! On stdin it accepts the debug commands the Python backend accepted:
 //! action names (`start`, `stop`, `tare`, `purge`, `home`, `info`, ...),

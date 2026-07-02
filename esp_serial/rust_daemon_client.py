@@ -35,7 +35,8 @@ from log import MeticulousLogger
 logger = MeticulousLogger.getLogger(__name__)
 
 PROTOCOL_VERSION = 1
-DEFAULT_SOCKET_PATH = os.getenv("METICULOUS_IPC_SOCKET", "/tmp/met-daemon.sock")
+# Matches the systemd unit (RuntimeDirectory=met-daemon) and the Rust default.
+DEFAULT_SOCKET_PATH = os.getenv("METICULOUS_IPC_SOCKET", "/run/met-daemon/ipc.sock")
 RECONNECT_DELAY_S = 1.0
 
 

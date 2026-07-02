@@ -19,6 +19,31 @@ WORKDIR /build
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --group machine --no-install-project
 
+# Stage 1b: Cross-compile the Rust met-daemon on the build host platform
+# (native speed; the venv stage above runs under the target platform instead).
+FROM --platform=$BUILDPLATFORM rust:1-bookworm AS rust-builder
+
+ARG ARCH=arm64
+RUN case "$ARCH" in \
+        arm64) echo aarch64-unknown-linux-gnu > /rust-target ;; \
+        amd64) echo x86_64-unknown-linux-gnu > /rust-target ;; \
+        *) echo "unsupported ARCH $ARCH" && exit 1 ;; \
+    esac \
+    && rustup target add "$(cat /rust-target)" \
+    && apt-get update -y && apt-get install -y --no-install-recommends \
+        gcc-aarch64-linux-gnu gcc-x86-64-linux-gnu
+
+ENV CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc
+ENV CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=x86_64-linux-gnu-gcc
+
+WORKDIR /build/met-core
+COPY met-core/Cargo.toml met-core/Cargo.lock ./
+COPY met-core/crates ./crates
+# The protocol golden tests need fixtures at build time only for `cargo test`;
+# the release build does not.
+RUN cargo build --release --target "$(cat /rust-target)" -p met-ipc \
+    && cp "target/$(cat /rust-target)/release/met-daemon" /met-daemon
+
 # Stage 2: Assemble the .deb package
 FROM debian:bookworm AS packager
 
@@ -34,6 +59,10 @@ COPY debian/ /pkg/
 RUN envsubst '${VERSION} ${ARCH}' < /pkg/DEBIAN/control > /pkg/DEBIAN/control.tmp \
     && mv /pkg/DEBIAN/control.tmp /pkg/DEBIAN/control
 RUN chmod 755 /pkg/DEBIAN/postinst /pkg/usr/bin/meticulous-backend /pkg/usr/bin/met-config
+
+# Rust serial daemon (strangler rewrite, gated by the use_rust_serial flag)
+COPY --from=rust-builder /met-daemon /pkg/usr/bin/met-daemon
+RUN chmod 755 /pkg/usr/bin/met-daemon
 
 # Create application directories
 RUN mkdir -p opt/meticulous-venv \

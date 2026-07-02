@@ -240,6 +240,31 @@ class Machine:
         logger.info(f"Backend available firmware version: {Machine.firmware_available}")
         return Machine.firmware_available
 
+    def _sync_rust_serial_marker():
+        """Keep the systemd gate for met-daemon.service in sync with the
+        use_rust_serial config flag. The unit has
+        ConditionPathExists on this marker, so toggling the flag (e.g. via
+        the settings API) makes the daemon start/stop on the next boot; we
+        also poke systemctl best-effort so a reboot is not required."""
+        from config import CONFIG_PATH
+
+        marker = os.path.join(CONFIG_PATH, ".use-rust-serial")
+        enabled = MeticulousConfig[CONFIG_SYSTEM][USE_RUST_SERIAL]
+        try:
+            if enabled and not os.path.exists(marker):
+                with open(marker, "w") as f:
+                    f.write("managed by machine.py from config use_rust_serial\n")
+                subprocess.run(
+                    ["systemctl", "start", "met-daemon.service"], check=False, timeout=10
+                )
+            elif not enabled and os.path.exists(marker):
+                os.remove(marker)
+                subprocess.run(
+                    ["systemctl", "stop", "met-daemon.service"], check=False, timeout=10
+                )
+        except Exception as e:
+            logger.warning(f"Could not sync met-daemon marker: {e}")
+
     def init(sio):
         Machine.esp_restart_request = True
         Machine._sio = sio
@@ -256,6 +281,8 @@ class Machine:
         if Machine._connection is not None or Machine._rust_client is not None:
             logger.warning("Machine.init was called twice!")
             return
+
+        Machine._sync_rust_serial_marker()
 
         if MeticulousConfig[CONFIG_SYSTEM][USE_RUST_SERIAL]:
             # Strangler phase 3: the Rust daemon owns the UART + GPIO and this

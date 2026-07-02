@@ -50,6 +50,32 @@ note in the engineering vault.
   `tests/test_rust_ipc_client.py` runs the Python client against the real
   daemon binary in emulator mode (also on CI).
 
+## Deployment (phase 4)
+
+The daemon ships **inside the meticulous-backend .deb** so the IPC contract
+can never drift between daemon and client:
+
+- `Dockerfile.deb` gains a `rust-builder` stage that cross-compiles
+  `met-daemon` on the build host platform (native speed, no QEMU) and
+  installs it at `/usr/bin/met-daemon`.
+- `debian/lib/systemd/system/met-daemon.service` runs it with
+  `ConditionPathExists=/meticulous-user/config/.use-rust-serial`, socket at
+  `/run/met-daemon/ipc.sock` (`RuntimeDirectory`), `Restart=always`.
+- The postinst enables the unit; the condition keeps it inert until the
+  experiment is on. **No meticulous-machine changes are required** — the
+  image installs the deb as always.
+
+Enabling the experiment on a machine (and rolling back) is one knob:
+
+```sh
+# on: set the config flag (settings API or met-config); machine.py creates
+# the marker and starts the daemon. Off: clear the flag; marker removed,
+# daemon stopped, Python serial path resumes on next backend restart.
+```
+
+CI also uploads the standalone `met-daemon-aarch64` artifact from the
+cross-compile job for ad-hoc testing on a machine.
+
 ## Parity testing
 
 The crate is held to parity with the Python implementation by golden
