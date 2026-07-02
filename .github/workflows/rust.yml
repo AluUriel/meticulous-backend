@@ -1,0 +1,73 @@
+name: Rust (met-core)
+
+on:
+  push:
+    paths:
+      - "met-core/**"
+      - "esp_serial/data.py"
+      - ".github/workflows/rust.yml"
+  pull_request:
+    paths:
+      - "met-core/**"
+      - "esp_serial/data.py"
+      - ".github/workflows/rust.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: met-core
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: met-core
+
+      - name: Check formatting
+        run: cargo fmt --check
+
+      - name: Clippy (warnings are errors)
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Goldens are up to date with the Python parsers
+        working-directory: .
+        run: |
+          python3 met-core/tools/gen_goldens.py
+          git diff --exit-code met-core/crates/protocol/testdata/goldens/
+
+      - name: Test
+        run: cargo test
+
+  cross-compile:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: met-core
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain (aarch64)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-unknown-linux-gnu
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: met-core
+          key: aarch64
+
+      - name: Build for the machine (ARM64)
+        run: cargo build --release --target aarch64-unknown-linux-gnu

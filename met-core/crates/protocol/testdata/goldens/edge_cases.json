@@ -1,0 +1,1768 @@
+[
+ {
+  "input": "CCW",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_COUNTERCLOCKWISE",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_COUNTERCLOCKWISE",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "CW",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "push",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_PUSH",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_PUSH",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "pu_d",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_DOUBLE",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_DOUBLE",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "elng",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_LONG",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_LONG",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "ta_d",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "TARE_DOUBLE",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "TARE_DOUBLE",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "ta_l",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "TARE_LONG",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "TARE_LONG",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "strt",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "CONTEXT",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "CONTEXT",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "tare",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ta_sl",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "cntx",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Event,CCW,120",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_COUNTERCLOCKWISE",
+   "time_since_last_event": 120
+  },
+  "sio": {
+   "type": "ENCODER_COUNTERCLOCKWISE",
+   "time_since_last_event": 120
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,CW,9999+++",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 10000
+  },
+  "sio": {
+   "type": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 10000
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,push,notanumber",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_PUSH",
+   "time_since_last_event": 0
+  },
+  "sio": {
+   "type": "ENCODER_PUSH",
+   "time_since_last_event": 0
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,ta_sl,42",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "TARE_SUPER_LONG",
+   "time_since_last_event": 42
+  },
+  "sio": {
+   "type": "TARE_SUPER_LONG",
+   "time_since_last_event": 42
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,cntx,7",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "CONTEXT",
+   "time_since_last_event": 7
+  },
+  "sio": {
+   "type": "CONTEXT",
+   "time_since_last_event": 7
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,tare_pressed,1",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "TARE_PRESSED",
+   "time_since_last_event": 1
+  },
+  "sio": {
+   "type": "TARE_PRESSED",
+   "time_since_last_event": 1
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,encoder_button_released,05",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_RELEASED",
+   "time_since_last_event": 5
+  },
+  "sio": {
+   "type": "ENCODER_RELEASED",
+   "time_since_last_event": 5
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,encoder_clockwise,3",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 3
+  },
+  "sio": {
+   "type": "ENCODER_CLOCKWISE",
+   "time_since_last_event": 3
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,unknown,1",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": {
+   "event": "UNKNOWN",
+   "time_since_last_event": 1
+  },
+  "sio": {
+   "type": "UNKNOWN",
+   "time_since_last_event": 1
+  },
+  "raises": false
+ },
+ {
+  "input": "Event,doesnotexist,1",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Event,cw,1",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Event",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Event,",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "button",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,brewing,My%20Profile,Pressure,9.0,Flow,2.0,true,1.2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "brewing",
+   "profile": "My Profile",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 1.2,
+   "main_controller_kind": "Pressure",
+   "main_setpoint": 9.0,
+   "aux_controller_kind": "Flow",
+   "aux_setpoint": 2.0,
+   "is_aux_controller_active": true
+  },
+  "sio": {
+   "name": "brewing",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 1.2
+   },
+   "setpoints": {
+    "active": "flow",
+    "pressure": 9.0,
+    "flow": 2.0
+   },
+   "time": -1,
+   "profile": "My Profile",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,U,92.1,brewing,Profile,none,0.0,none,0.0,false,0.4",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": false,
+   "temperature": 92.1,
+   "status": "brewing",
+   "profile": "Profile",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 0.4,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "brewing",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.4
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "Profile",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,idle,idle",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "idle",
+   "profile": "idle",
+   "time": -1,
+   "profile_time": -1,
+   "state": "idle",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "idle",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "idle",
+   "profile_time": -1,
+   "state": "idle",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,0.0,0.0,-0.4,U,23.2,idle,Purge",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 0.0,
+   "flow": 0.0,
+   "weight": -0.4,
+   "stable_weight": false,
+   "temperature": 23.2,
+   "status": "idle",
+   "profile": "Purge",
+   "time": -1,
+   "profile_time": -1,
+   "state": "purge",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "idle",
+   "sensors": {
+    "p": 0.0,
+    "f": 0.0,
+    "w": -0.4,
+    "t": 23.2,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "Purge",
+   "profile_time": -1,
+   "state": "purge",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,0.0,0.0,-0.4,U,23.2,retracting,Home",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 0.0,
+   "flow": 0.0,
+   "weight": -0.4,
+   "stable_weight": false,
+   "temperature": 23.2,
+   "status": "retracting",
+   "profile": "Home",
+   "time": -1,
+   "profile_time": -1,
+   "state": "home",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "retracting",
+   "sensors": {
+    "p": 0.0,
+    "f": 0.0,
+    "w": -0.4,
+    "t": 23.2,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "Home",
+   "profile_time": -1,
+   "state": "home",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,nan,NaN,bogus,S,92.0",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": "NaN",
+   "flow": "NaN",
+   "weight": "NaN",
+   "stable_weight": true,
+   "temperature": 92.0,
+   "status": null,
+   "profile": null,
+   "time": -1,
+   "profile_time": -1,
+   "state": "idle",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": null,
+   "sensors": {
+    "p": "NaN",
+    "f": "NaN",
+    "w": "NaN",
+    "t": 92.0,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": null,
+   "profile_time": -1,
+   "state": "idle",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1e-5,2E3,+3.5,S,1_0.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1e-05,
+   "flow": 2000.0,
+   "weight": 3.5,
+   "stable_weight": true,
+   "temperature": 10.5,
+   "status": null,
+   "profile": null,
+   "time": -1,
+   "profile_time": -1,
+   "state": "idle",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": null,
+   "sensors": {
+    "p": 1e-05,
+    "f": 2000.0,
+    "w": 3.5,
+    "t": 10.5,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": null,
+   "profile_time": -1,
+   "state": "idle",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1,2,3,S,20",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.0,
+   "flow": 2.0,
+   "weight": 3.0,
+   "stable_weight": true,
+   "temperature": 20.0,
+   "status": null,
+   "profile": null,
+   "time": -1,
+   "profile_time": -1,
+   "state": "idle",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": null,
+   "sensors": {
+    "p": 1.0,
+    "f": 2.0,
+    "w": 3.0,
+    "t": 20.0,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": null,
+   "profile_time": -1,
+   "state": "idle",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1,2,3,S",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Data,1,2,3",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": null,
+  "sio": null,
+  "raises": true
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,Profile%20with%2C%20comma,name%E2%82%AC",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "Profile with, comma",
+   "profile": "name\u20ac",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "Profile with, comma",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "name\u20ac",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,bad%zzescape,%fF",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "bad%zzescape",
+   "profile": "\ufffd",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": null,
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "bad%zzescape",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": null
+   },
+   "time": -1,
+   "profile": "\ufffd",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,heating,,Pressure,bogus,Flow,2.0,true,1.2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "heating",
+   "profile": "",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": "Pressure",
+   "main_setpoint": 0.0,
+   "aux_controller_kind": null,
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "heating",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": "pressure",
+    "pressure": 0.0
+   },
+   "time": -1,
+   "profile": "",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,heating,p,Pressure,9.0,Flow,bogus,true,1.2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "heating",
+   "profile": "p",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": 0.0,
+   "main_controller_kind": "Pressure",
+   "main_setpoint": 9.0,
+   "aux_controller_kind": "Flow",
+   "aux_setpoint": 0.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "heating",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": 0.0
+   },
+   "setpoints": {
+    "active": "pressure",
+    "pressure": 9.0,
+    "flow": 0.0
+   },
+   "time": -1,
+   "profile": "p",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data,1.5,0.8,36.2,S,92.1,closing valve,p,Power,9.0,Flow,2.0,maybe,xyz",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": {
+   "pressure": 1.5,
+   "flow": 0.8,
+   "weight": 36.2,
+   "stable_weight": true,
+   "temperature": 92.1,
+   "status": "closing valve",
+   "profile": "p",
+   "time": -1,
+   "profile_time": -1,
+   "state": "brewing",
+   "is_extracting": false,
+   "gravimetric_flow": "NaN",
+   "main_controller_kind": "Power",
+   "main_setpoint": 9.0,
+   "aux_controller_kind": "Flow",
+   "aux_setpoint": 2.0,
+   "is_aux_controller_active": false
+  },
+  "sio": {
+   "name": "closing valve",
+   "sensors": {
+    "p": 1.5,
+    "f": 0.8,
+    "w": 36.2,
+    "t": 92.1,
+    "g": "NaN"
+   },
+   "setpoints": {
+    "active": "power",
+    "power": 9.0,
+    "flow": 2.0
+   },
+   "time": -1,
+   "profile": "p",
+   "profile_time": -1,
+   "state": "brewing",
+   "extracting": false
+  },
+  "raises": false
+ },
+ {
+  "input": "Data",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": null,
+  "sio": null,
+  "raises": true
+ },
+ {
+  "input": "Sensors,90.1,91.2,92.0,93.0,94.0,95.0,85.0,40.0,50.0,10.5,100.0,5.0,2.5,1.0,3.0,9.0,0.1,0.2,0.3,0.4,true,35.0,18.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": {
+   "external_1": 90.1,
+   "external_2": 91.2,
+   "bar_up": 92.0,
+   "bar_mid_up": 93.0,
+   "bar_mid_down": 94.0,
+   "bar_down": 95.0,
+   "tube": 85.0,
+   "motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "motor_position": 10.5,
+   "motor_speed": 100.0,
+   "motor_power": 5.0,
+   "motor_current": 2.5,
+   "bandheater_power": 3.0,
+   "bandheater_current": 1.0,
+   "pressure_sensor": 9.0,
+   "adc_0": 0.1,
+   "adc_1": 0.2,
+   "adc_2": 0.3,
+   "adc_3": 0.4,
+   "water_status": true,
+   "motor_thermistor": 35.0,
+   "weight_prediction": 18.5
+  },
+  "sio": {
+   "t_ext_1": 90.1,
+   "t_ext_2": 91.2,
+   "t_bar_up": 92.0,
+   "t_bar_mu": 93.0,
+   "t_bar_md": 94.0,
+   "t_bar_down": 95.0,
+   "t_tube": 85.0,
+   "t_motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "p": 9.0,
+   "a_0": 0.1,
+   "a_1": 0.2,
+   "a_2": 0.3,
+   "a_3": 0.4,
+   "m_pos": 10.5,
+   "m_spd": 100.0,
+   "m_pwr": 5.0,
+   "m_cur": 2.5,
+   "bh_pwr": 3.0,
+   "bh_cur": 1.0,
+   "w_stat": true,
+   "motor_temp": 35.0,
+   "weight_pred": 18.5
+  },
+  "raises": false
+ },
+ {
+  "input": "Sensors,90.1,91.2,92.0,93.0,94.0,95.0,85.0,40.0,50.0,10.5,100.0,5.0,2.5,1.0,3.0,9.0,0.1,0.2,0.3,0.4,TRUE,nan,notanumber",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": {
+   "external_1": 90.1,
+   "external_2": 91.2,
+   "bar_up": 92.0,
+   "bar_mid_up": 93.0,
+   "bar_mid_down": 94.0,
+   "bar_down": 95.0,
+   "tube": 85.0,
+   "motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "motor_position": 10.5,
+   "motor_speed": 100.0,
+   "motor_power": 5.0,
+   "motor_current": 2.5,
+   "bandheater_power": 3.0,
+   "bandheater_current": 1.0,
+   "pressure_sensor": 9.0,
+   "adc_0": 0.1,
+   "adc_1": 0.2,
+   "adc_2": 0.3,
+   "adc_3": 0.4,
+   "water_status": true,
+   "motor_thermistor": "NaN",
+   "weight_prediction": "NaN"
+  },
+  "sio": {
+   "t_ext_1": 90.1,
+   "t_ext_2": 91.2,
+   "t_bar_up": 92.0,
+   "t_bar_mu": 93.0,
+   "t_bar_md": 94.0,
+   "t_bar_down": 95.0,
+   "t_tube": 85.0,
+   "t_motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "p": 9.0,
+   "a_0": 0.1,
+   "a_1": 0.2,
+   "a_2": 0.3,
+   "a_3": 0.4,
+   "m_pos": 10.5,
+   "m_spd": 100.0,
+   "m_pwr": 5.0,
+   "m_cur": 2.5,
+   "bh_pwr": 3.0,
+   "bh_cur": 1.0,
+   "w_stat": true,
+   "motor_temp": "NaN",
+   "weight_pred": "NaN"
+  },
+  "raises": false
+ },
+ {
+  "input": "Sensors,inf,-inf,92.0,93.0,94.0,95.0,85.0,40.0,50.0,10.5,100.0,5.0,2.5,1.0,3.0,9.0,0.1,0.2,0.3,0.4,false,1_0,+2.5e-3",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": {
+   "external_1": 0,
+   "external_2": 0,
+   "bar_up": 92.0,
+   "bar_mid_up": 93.0,
+   "bar_mid_down": 94.0,
+   "bar_down": 95.0,
+   "tube": 85.0,
+   "motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "motor_position": 10.5,
+   "motor_speed": 100.0,
+   "motor_power": 5.0,
+   "motor_current": 2.5,
+   "bandheater_power": 3.0,
+   "bandheater_current": 1.0,
+   "pressure_sensor": 9.0,
+   "adc_0": 0.1,
+   "adc_1": 0.2,
+   "adc_2": 0.3,
+   "adc_3": 0.4,
+   "water_status": false,
+   "motor_thermistor": 10.0,
+   "weight_prediction": 0.0025
+  },
+  "sio": {
+   "t_ext_1": 0,
+   "t_ext_2": 0,
+   "t_bar_up": 92.0,
+   "t_bar_mu": 93.0,
+   "t_bar_md": 94.0,
+   "t_bar_down": 95.0,
+   "t_tube": 85.0,
+   "t_motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "p": 9.0,
+   "a_0": 0.1,
+   "a_1": 0.2,
+   "a_2": 0.3,
+   "a_3": 0.4,
+   "m_pos": 10.5,
+   "m_spd": 100.0,
+   "m_pwr": 5.0,
+   "m_cur": 2.5,
+   "bh_pwr": 3.0,
+   "bh_cur": 1.0,
+   "w_stat": false,
+   "motor_temp": 10.0,
+   "weight_pred": 0.0025
+  },
+  "raises": false
+ },
+ {
+  "input": "Sensors,90.1,91.2,bogus,93.0,94.0,95.0,85.0,40.0,50.0,10.5,100.0,5.0,2.5,1.0,3.0,9.0,0.1,0.2,0.3,0.4,true,35.0,18.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Sensors,90.1,91.2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Sensors",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Sensors,\u001b[1;31m ext1\u001b[0m90.1\u001b[1;32m ext2\u001b[0m91.2\u001b[1;33m bar_up\u001b[0m92.0\u001b[1;34m bar_mu\u001b[0m93.0\u001b[1;35m bar_md\u001b[0m94.0\u001b[1;36m bar_d\u001b[0m95.0\u001b[1;31m tube\u001b[0m85.0\u001b[1;32m mt\u001b[0m40.0\u001b[1;33m lt\u001b[0m50.0\u001b[1;34m mp\u001b[0m10.5\u001b[1;35m ms\u001b[0m100.0\u001b[1;36m mw\u001b[0m5.0\u001b[1;31m mc\u001b[0m2.5\u001b[1;32m bc\u001b[0m1.0\u001b[1;33m bp\u001b[0m3.0\u001b[1;34m ps\u001b[0m9.0\u001b[1;35m a0\u001b[0m0.1\u001b[1;36m a1\u001b[0m0.2\u001b[1;31m a2\u001b[0m0.3\u001b[1;32m a3\u001b[0m0.4\u001b[1;33m ws\u001b[0mtrue\u001b[1;34m mth\u001b[0m35.0\u001b[1;35m wp\u001b[0m18.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": {
+   "external_1": 90.1,
+   "external_2": 91.2,
+   "bar_up": 92.0,
+   "bar_mid_up": 93.0,
+   "bar_mid_down": 94.0,
+   "bar_down": 95.0,
+   "tube": 85.0,
+   "motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "motor_position": 10.5,
+   "motor_speed": 100.0,
+   "motor_power": 5.0,
+   "motor_current": 2.5,
+   "bandheater_power": 3.0,
+   "bandheater_current": 1.0,
+   "pressure_sensor": 9.0,
+   "adc_0": 0.1,
+   "adc_1": 0.2,
+   "adc_2": 0.3,
+   "adc_3": 0.4,
+   "water_status": true,
+   "motor_thermistor": 35.0,
+   "weight_prediction": 18.5
+  },
+  "sio": {
+   "t_ext_1": 90.1,
+   "t_ext_2": 91.2,
+   "t_bar_up": 92.0,
+   "t_bar_mu": 93.0,
+   "t_bar_md": 94.0,
+   "t_bar_down": 95.0,
+   "t_tube": 85.0,
+   "t_motor_temp": 40.0,
+   "lam_temp": 50.0,
+   "p": 9.0,
+   "a_0": 0.1,
+   "a_1": 0.2,
+   "a_2": 0.3,
+   "a_3": 0.4,
+   "m_pos": 10.5,
+   "m_spd": 100.0,
+   "m_pwr": 5.0,
+   "m_cur": 2.5,
+   "bh_pwr": 3.0,
+   "bh_cur": 1.0,
+   "w_stat": true,
+   "motor_temp": 35.0,
+   "weight_pred": 18.5
+  },
+  "raises": false
+ },
+ {
+  "input": "Sensors,\u001b[1;39m notacolor\u001b[0m90.1",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "sensors",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 4,
+   "mainVoltage": 12.5,
+   "color": "",
+   "serialNumber": "",
+   "batchNumber": "",
+   "buildDate": "",
+   "scaleModule": "",
+   "partialRetraction": 45.0,
+   "autoPurgeAfterShot": false
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 4,
+   "main_voltage": 12.5,
+   "color": "",
+   "serial_number": "",
+   "batch_number": "",
+   "build_date": "",
+   "scale_module": "",
+   "partial_retraction": 45.0,
+   "auto_purge_after_shot": false
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,fan_on,12.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 0,
+   "mainVoltage": 12.5,
+   "color": "",
+   "serialNumber": "",
+   "batchNumber": "",
+   "buildDate": "",
+   "scaleModule": "",
+   "partialRetraction": 45.0,
+   "autoPurgeAfterShot": false
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 0,
+   "main_voltage": 12.5,
+   "color": "",
+   "serial_number": "",
+   "batch_number": "",
+   "build_date": "",
+   "scale_module": "",
+   "partial_retraction": 45.0,
+   "auto_purge_after_shot": false
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5,black,SN123,B42,2024-01-15,scale-v2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 4,
+   "mainVoltage": 12.5,
+   "color": "black",
+   "serialNumber": "SN123",
+   "batchNumber": "B42",
+   "buildDate": "2024-01-15",
+   "scaleModule": "scale-v2",
+   "partialRetraction": 45.0,
+   "autoPurgeAfterShot": false
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 4,
+   "main_voltage": 12.5,
+   "color": "black",
+   "serial_number": "SN123",
+   "batch_number": "B42",
+   "build_date": "2024-01-15",
+   "scale_module": "scale-v2",
+   "partial_retraction": 45.0,
+   "auto_purge_after_shot": false
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5,black,SN123,B42,2024-01-15,scale-v2,37.5",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 4,
+   "mainVoltage": 12.5,
+   "color": "black",
+   "serialNumber": "SN123",
+   "batchNumber": "B42",
+   "buildDate": "2024-01-15",
+   "scaleModule": "scale-v2",
+   "partialRetraction": 37.5,
+   "autoPurgeAfterShot": false
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 4,
+   "main_voltage": 12.5,
+   "color": "black",
+   "serial_number": "SN123",
+   "batch_number": "B42",
+   "build_date": "2024-01-15",
+   "scale_module": "scale-v2",
+   "partial_retraction": 37.5,
+   "auto_purge_after_shot": false
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5,black,SN123,B42,2024-01-15,scale-v2,37.5,true",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 4,
+   "mainVoltage": 12.5,
+   "color": "black",
+   "serialNumber": "SN123",
+   "batchNumber": "B42",
+   "buildDate": "2024-01-15",
+   "scaleModule": "scale-v2",
+   "partialRetraction": 37.5,
+   "autoPurgeAfterShot": true
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 4,
+   "main_voltage": 12.5,
+   "color": "black",
+   "serial_number": "SN123",
+   "batch_number": "B42",
+   "build_date": "2024-01-15",
+   "scale_module": "scale-v2",
+   "partial_retraction": 37.5,
+   "auto_purge_after_shot": true
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5,black,SN123,B42,2024-01-15,scale-v2,37.5,TRUE,extra",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": {
+   "firmwareV": "v1.2.3",
+   "espPinout": 4,
+   "mainVoltage": 12.5,
+   "color": "black",
+   "serialNumber": "SN123",
+   "batchNumber": "B42",
+   "buildDate": "2024-01-15",
+   "scaleModule": "scale-v2",
+   "partialRetraction": 37.5,
+   "autoPurgeAfterShot": true
+  },
+  "sio": {
+   "firmware_version": "v1.2.3",
+   "esp_pinout": 4,
+   "main_voltage": 12.5,
+   "color": "black",
+   "serial_number": "SN123",
+   "batch_number": "B42",
+   "build_date": "2024-01-15",
+   "scale_module": "scale-v2",
+   "partial_retraction": 37.5,
+   "auto_purge_after_shot": true
+  },
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,12.5,black,SN123,B42,2024-01-15,scale-v2,bogus",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3,4,bogus",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ESPInfo,v1.2.3",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ESPInfo",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "esp_info",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Notify,warning,Water tank empty",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "notify",
+  "value": {
+   "notificationType": "warning",
+   "message": "Water tank empty"
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Notify,warning,line one;line two;line three",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "notify",
+  "value": {
+   "notificationType": "warning",
+   "message": "line one\nline two\nline three"
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Notify,info,message,with,commas",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "notify",
+  "value": {
+   "notificationType": "info",
+   "message": "message,with,commas"
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Notify,onlytype",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "notify",
+  "value": {
+   "notificationType": "onlytype",
+   "message": ""
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Notify",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "notify",
+  "value": null,
+  "sio": null,
+  "raises": true
+ },
+ {
+  "input": "HeaterTimeoutInfo,10.5,60.0,5.0,30.0",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": {
+   "coffe_profile_end_remaining": 10.5,
+   "coffe_profile_end_timeout": 60.0,
+   "preheat_remaining": 5.0,
+   "preheat_timeout": 30.0
+  },
+  "sio": {
+   "coffe_profile_end": {
+    "remaining": 10.5,
+    "timeout": 60.0
+   },
+   "preheat": {
+    "remaining": 5.0,
+    "timeout": 30.0
+   }
+  },
+  "raises": false
+ },
+ {
+  "input": "HeaterTimeoutInfo,0,60.0,0,30.0",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": {
+   "coffe_profile_end_remaining": 0.0,
+   "coffe_profile_end_timeout": 60.0,
+   "preheat_remaining": 0.0,
+   "preheat_timeout": 30.0
+  },
+  "sio": {
+   "coffe_profile_end": {
+    "remaining": 0.0,
+    "timeout": 60.0
+   },
+   "preheat": {
+    "remaining": 0.0,
+    "timeout": 30.0
+   }
+  },
+  "raises": false
+ },
+ {
+  "input": "HeaterTimeoutInfo,10.5,60.0,5.0",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "HeaterTimeoutInfo,10.5,60.0,5.0,30.0,extra",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "HeaterTimeoutInfo,bogus,60.0,5.0,30.0",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "HeaterTimeoutInfo",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "heater_timeout",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,ERROR,Heater fault detected",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "error",
+   "message": "Heater fault detected",
+   "full_message": "Heater fault detected",
+   "items_filtered": null,
+   "send_to_sentry": true
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,info,boot complete",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "info",
+   "message": "boot complete",
+   "full_message": "boot complete",
+   "items_filtered": null,
+   "send_to_sentry": false
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,warning,low voltage,voltage=11.2,sentry=true",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "warning",
+   "message": "low voltage",
+   "full_message": "low voltage,voltage=11.2,sentry=true",
+   "items_filtered": {
+    "voltage": "11.2"
+   },
+   "send_to_sentry": true
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,info,details,key=value=extra,malformed,k2=v2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "info",
+   "message": "details",
+   "full_message": "details,key=value=extra,malformed,k2=v2",
+   "items_filtered": {
+    "key": "value",
+    "k2": "v2"
+   },
+   "send_to_sentry": false
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,info,details,sentry=false,a=1,a=2",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "info",
+   "message": "details",
+   "full_message": "details,sentry=false,a=1,a=2",
+   "items_filtered": {
+    "a": "1"
+   },
+   "send_to_sentry": false
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,debug,x,=empty,novalue=",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": {
+   "level": "debug",
+   "message": "x",
+   "full_message": "x,=empty,novalue=",
+   "items_filtered": {
+    "": "empty",
+    "novalue": ""
+   },
+   "send_to_sentry": false
+  },
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log,info",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Log",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "log",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)",
+  "is_boot_banner": true,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "rst:0x1 (POWERON_RESET),boot:0x13 (RTC_SW_SYS_RESET)",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Backtrace: 0x40081234:0x3ffb1234",
+  "is_boot_banner": false,
+  "has_crash_marker": true,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Guru Meditation Error: Core 1 panic'ed (LoadProhibited)",
+  "is_boot_banner": false,
+  "has_crash_marker": true,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "REGISTER DUMP:",
+  "is_boot_banner": false,
+  "has_crash_marker": true,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "ets Jul 29 2019 12:21:46",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "random garbage line",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": ",",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ },
+ {
+  "input": "Data\r\n",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "data",
+  "value": null,
+  "sio": null,
+  "raises": true
+ },
+ {
+  "input": "  CCW  ",
+  "is_boot_banner": false,
+  "has_crash_marker": false,
+  "kind": "unrecognized",
+  "value": null,
+  "sio": null,
+  "raises": false
+ }
+]

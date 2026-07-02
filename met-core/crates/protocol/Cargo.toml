@@ -1,0 +1,17 @@
+[package]
+name = "met-protocol"
+description = "Typed parser for the ESP32 <-> backend UART protocol. Pure, no IO."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
+
+[lints]
+workspace = true
