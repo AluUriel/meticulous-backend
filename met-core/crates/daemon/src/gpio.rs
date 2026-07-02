@@ -63,9 +63,10 @@ pub mod fika {
 
     impl FikaPins {
         /// Request all four lines as outputs.
-        pub fn new() -> Result<Self, gpiod::Error> {
-            let request = |chip_num: u32, line: u32| -> Result<_, gpiod::Error> {
-                let chip = gpiod::Chip::new(format!("gpiochip{chip_num}"))?;
+        /// gpiod's `Result`/`Error` are re-exported `std::io` types.
+        pub fn new() -> std::io::Result<Self> {
+            let request = |chip_num: usize, line: gpiod::LineId| -> std::io::Result<_> {
+                let chip = gpiod::Chip::new(chip_num)?;
                 let opts = gpiod::Options::output([line]).consumer("met-daemon");
                 chip.request_lines(opts)
             };
