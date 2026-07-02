@@ -249,7 +249,7 @@ class Machine:
         from config import CONFIG_PATH
 
         marker = os.path.join(CONFIG_PATH, ".use-rust-serial")
-        enabled = MeticulousConfig[CONFIG_SYSTEM][USE_RUST_SERIAL]
+        enabled = MeticulousConfig[CONFIG_USER][USE_RUST_SERIAL]
         try:
             if enabled and not os.path.exists(marker):
                 with open(marker, "w") as f:
@@ -284,7 +284,7 @@ class Machine:
 
         Machine._sync_rust_serial_marker()
 
-        if MeticulousConfig[CONFIG_SYSTEM][USE_RUST_SERIAL]:
+        if MeticulousConfig[CONFIG_USER][USE_RUST_SERIAL]:
             # Strangler phase 3: the Rust daemon owns the UART + GPIO and this
             # process consumes its event stream (see esp_serial/rust_daemon_client.py).
             from esp_serial.rust_daemon_client import MachineBridge, RustDaemonClient
