@@ -38,6 +38,17 @@ pub enum DaemonCommand {
     Pause,
     /// Resume after [`DaemonCommand::Pause`].
     Resume,
+    /// Flashing handshake, step 1: pause, optionally hold the ESP in its
+    /// bootloader (GPIO), close the device so esptool can open it, then
+    /// emit [`MachineEvent::PortReleased`].
+    ReleasePort {
+        /// Put the ESP in the ROM bootloader before releasing.
+        bootloader: bool,
+    },
+    /// Flashing handshake, step 2: reopen the device, hard-reset the ESP
+    /// (Python: "esptool cannot reset the fika board so we always reset
+    /// manually"), resume reading, emit [`MachineEvent::PortResumed`].
+    AcquirePort,
 }
 
 /// Handle to a running daemon.
@@ -259,6 +270,29 @@ async fn handle_command(
             tracing::info!("resuming ESP communication");
             return false;
         }
+        DaemonCommand::ReleasePort { bootloader } => {
+            tracing::info!(bootloader, "releasing serial port for external flasher");
+            state.note_reset_requested();
+            if bootloader {
+                transport.reset(true).await;
+            }
+            transport.release_port();
+            let _ = events.send(MachineEvent::PortReleased { bootloader });
+            return true;
+        }
+        DaemonCommand::AcquirePort => match transport.acquire_port() {
+            Ok(()) => {
+                state.note_reset_requested();
+                transport.reset(false).await;
+                let _ = events.send(MachineEvent::PortResumed);
+                tracing::info!("serial port reacquired, resuming");
+                return false;
+            }
+            Err(error) => {
+                tracing::error!(%error, "cannot reacquire serial port, staying paused");
+                return true;
+            }
+        },
     }
     paused
 }

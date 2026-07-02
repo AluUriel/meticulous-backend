@@ -84,6 +84,11 @@ ROOT_PASSWORD_DEFAULT = None
 LAST_SYSTEM_VERSIONS = "last_system_versions"
 LAST_SYSTEM_VERSIONS_DEFAULT = []
 
+# Strangler-rewrite flag: route ESP32 serial through the Rust met-daemon
+# (met-core/) over its Unix socket instead of the in-process serial thread.
+USE_RUST_SERIAL = "use_rust_serial"
+USE_RUST_SERIAL_DEFAULT = False
+
 #
 # USER config
 #
@@ -220,6 +225,7 @@ DefaultConfiguration_V1 = {
         MACHINE_COLOR: MACHINE_DEFAULT_COLOR,
         ROOT_PASSWORD: ROOT_PASSWORD_DEFAULT,
         LAST_SYSTEM_VERSIONS: LAST_SYSTEM_VERSIONS_DEFAULT,
+        USE_RUST_SERIAL: USE_RUST_SERIAL_DEFAULT,
     },
     CONFIG_USER: {
         SOUNDS_ENABLED: SOUNDS_DEFAULT_ENABLED,

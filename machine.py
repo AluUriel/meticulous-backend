@@ -27,6 +27,7 @@ from config import (
     MACHINE_HEAT_ON_BOOT,
     PROFILE_AUTO_PURGE,
     PROFILE_PARTIAL_RETRACTION,
+    USE_RUST_SERIAL,
     MeticulousConfig,
 )
 from esp_serial.connection.emulator_serial_connection import EmulatorSerialConnection
@@ -116,6 +117,7 @@ class Machine:
     ]
 
     _connection = None
+    _rust_client = None
     _thread = None
     _stopESPcomm = False
     _sio = None
@@ -251,8 +253,22 @@ class Machine:
             MeticulousConfig.save()
         Machine.validate_manufacturing()
 
-        if Machine._connection is not None:
+        if Machine._connection is not None or Machine._rust_client is not None:
             logger.warning("Machine.init was called twice!")
+            return
+
+        if MeticulousConfig[CONFIG_SYSTEM][USE_RUST_SERIAL]:
+            # Strangler phase 3: the Rust daemon owns the UART + GPIO and this
+            # process consumes its event stream (see esp_serial/rust_daemon_client.py).
+            from esp_serial.rust_daemon_client import MachineBridge, RustDaemonClient
+
+            Machine.emulated = BACKEND in ("EMULATOR", "EMULATION")
+            logger.info("USE_RUST_SERIAL is set: connecting to met-daemon over IPC")
+            Machine._rust_client = RustDaemonClient(MachineBridge(sio))
+            Machine._rust_client.start()
+
+            if Machine.is_first_normal_boot:
+                Machine.on_first_normal_boot()
             return
 
         match (BACKEND):
@@ -629,9 +645,7 @@ class Machine:
                         MeticulousConfig[CONFIG_USER][PROFILE_PARTIAL_RETRACTION]
                     )
                     Machine.setPartialRetraction(backend_partial_retraction)
-                    backend_auto_purge = bool(
-                        MeticulousConfig[CONFIG_USER][PROFILE_AUTO_PURGE]
-                    )
+                    backend_auto_purge = bool(MeticulousConfig[CONFIG_USER][PROFILE_AUTO_PURGE])
                     Machine.setAutoPurgeAfterShot(backend_auto_purge)
 
                     if (
@@ -795,12 +809,44 @@ class Machine:
     def startScaleMasterCalibration():
         Machine.action("scale_master_calibration")
 
-    def startUpdate():
+    def _updateViaRustDaemon():
+        """Flashing handshake with met-daemon: it holds the ESP in its
+        bootloader and frees the device; esptool (still Python) flashes;
+        the daemon then reacquires and hard-resets the ESP."""
+        if Machine.emulated:
+            logger.info("Emulated ESP32 cannot be updated")
+            return None
 
-        Machine._stopESPcomm = True
         Machine.esp_restart_request = True
-        error_msg = Machine._connection.sendUpdate()
-        Machine._stopESPcomm = False
+        if not Machine._rust_client.release_port(bootloader=True):
+            return "met-daemon did not release the serial port"
+
+        device = os.getenv("SERIAL_DEVICE", "/dev/ttymxc0")
+        error_msg = None
+        try:
+            import serial as pyserial
+
+            port = pyserial.Serial(device, baudrate=115200, timeout=2)
+            try:
+                error_msg = ESPToolWrapper().flash(port, reset=False)
+            finally:
+                port.close()
+        except Exception as e:
+            logger.error(f"Flashing via met-daemon handshake failed: {e}", exc_info=True)
+            error_msg = str(e)
+
+        if not Machine._rust_client.acquire_port():
+            logger.error("met-daemon did not reacquire the serial port")
+        return error_msg
+
+    def startUpdate():
+        if Machine._rust_client is not None:
+            error_msg = Machine._updateViaRustDaemon()
+        else:
+            Machine._stopESPcomm = True
+            Machine.esp_restart_request = True
+            error_msg = Machine._connection.sendUpdate()
+            Machine._stopESPcomm = False
 
         if error_msg:
             updateNotification = Notification(
@@ -851,6 +897,9 @@ class Machine:
         if action_event == "home" or action_event == "purge":
             Machine.profileReady = True
 
+        if Machine._rust_client is not None:
+            return Machine._rust_client.send_action(action_event)
+
         machine_msg = f"action,{action_event}\x03"
         Machine.writeStr(machine_msg)
         return True
@@ -859,17 +908,34 @@ class Machine:
         Machine.write(str.encode(content))
 
     def write(content):
+        if Machine._rust_client is not None:
+            Machine._rust_client.write_raw(content)
+            return
         if not Machine._stopESPcomm:
             Machine._connection.port.write(content)
 
     def reset():
         Machine.esp_restart_request = True
-        Machine._connection.reset()
+        if Machine._rust_client is not None:
+            Machine._rust_client.reset()
+        else:
+            Machine._connection.reset()
         Machine.infoReady = False
         Machine.profileReady = False
         Machine.startTime = time.time()
 
     def send_json_with_hash(json_obj):
+        if Machine._rust_client is not None:
+            # The daemon frames and hashes the JSON itself (met-ipc send_profile).
+            Machine._rust_client.send_profile(json_obj)
+            Machine.profileReady = True
+            while True:
+                if ShotDebugManager._current_data is not None:
+                    break
+            with ShotDebugManager.clear_current_data_lock:
+                ShotDebugManager._current_data.nodeJSON = json_obj
+            return
+
         json_string = json.dumps(json_obj)
         json_data = "json\n" + json_string + "\x03"
 

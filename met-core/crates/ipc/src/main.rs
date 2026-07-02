@@ -1,10 +1,11 @@
-//! met-daemon binary: run the ESP32 serial daemon.
+//! met-daemon binary: run the ESP32 serial daemon with its IPC server.
 //!
 //! Configuration comes from the same environment variables the Python
 //! backend uses:
 //! - `BACKEND`: `FIKA` (default on the machine), `USB`, or `EMULATOR`
 //! - `EMULATION_SPEED`: percent, 100 = real time
 //! - `METICULOUS_EMULATION_DIR`: directory with `emulated.*.json` fixtures
+//! - `METICULOUS_IPC_SOCKET`: Unix socket path (default /tmp/met-daemon.sock)
 //!
 //! On stdin it accepts the debug commands the Python backend accepted:
 //! action names (`start`, `stop`, `tare`, `purge`, `home`, `info`, ...),
@@ -120,6 +121,18 @@ async fn main() {
 
     let mut events = handle.events.subscribe();
     tokio::spawn(stdin_commands(handle.commands.clone()));
+
+    let socket = met_ipc::socket_path_from_env();
+    let (ipc_events, ipc_snapshot, ipc_commands) = (
+        handle.events.clone(),
+        handle.snapshot.clone(),
+        handle.commands.clone(),
+    );
+    tokio::spawn(async move {
+        if let Err(error) = met_ipc::serve(&socket, ipc_events, ipc_snapshot, ipc_commands).await {
+            tracing::error!(%error, "IPC server failed");
+        }
+    });
 
     loop {
         match events.recv().await {

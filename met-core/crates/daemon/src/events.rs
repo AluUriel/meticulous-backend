@@ -83,4 +83,15 @@ pub enum MachineEvent {
     AlarmRaised { alarm: Alarm },
     /// A valid message arrived while alarms were up (Python: `clear_alarm`).
     AlarmsCleared,
+
+    /// The daemon closed the serial port (and optionally put the ESP in its
+    /// bootloader) so an external flasher — Python's esptool — can own the
+    /// device. Flashing itself stays backend-side by design.
+    PortReleased {
+        /// The ESP was left in the ROM bootloader.
+        bootloader: bool,
+    },
+    /// The daemon reopened the port and reset the ESP after a
+    /// [`PortReleased`](MachineEvent::PortReleased) window.
+    PortResumed,
 }

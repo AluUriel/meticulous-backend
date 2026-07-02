@@ -1,23 +1,23 @@
 [package]
-name = "met-daemon"
-description = "Serial daemon owning the ESP32 UART + GPIO: read loop, watchdog, emulator mode."
+name = "met-ipc"
+description = "Unix-socket IPC contract between met-daemon and the Python backend."
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 
 [dependencies]
+met-daemon = { path = "../daemon" }
 met-protocol = { path = "../protocol" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }
-md-5 = { workspace = true }
-thiserror = { workspace = true }
 tracing = { workspace = true }
-tokio-serial = { workspace = true }
-
-[target.'cfg(target_os = "linux")'.dependencies]
-gpiod = "0.3"
+tracing-subscriber = { workspace = true }
 
 [lints]
 workspace = true
+
+[[bin]]
+name = "met-daemon"
+path = "src/main.rs"

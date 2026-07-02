@@ -26,16 +26,29 @@ note in the engineering vault.
   ```sh
   cd met-core
   BACKEND=EMULATOR METICULOUS_EMULATION_DIR=../esp_serial/connection \
-    cargo run -p met-daemon
+    cargo run -p met-ipc
   # stdin accepts: start stop tare purge home info reset bootloader pause resume
+  # IPC socket: METICULOUS_IPC_SOCKET (default /tmp/met-daemon.sock)
   ```
 
   What stays in Python on purpose (until phase 3+): sounds, shot/DB
   management, notifications, alarm UX, esptool flashing, config sync, REST
   and socket.io. The daemon reports; the backend decides.
 
-Planned next (phase 3): `crates/ipc` — the Unix-socket contract that lets
-Python's `Machine` become a thin client of this daemon behind a config flag.
+- **`crates/ipc`** (`met-ipc`) — phase 3: the Unix-socket contract and the
+  `met-daemon` binary (daemon + IPC server). Newline-delimited JSON, v1,
+  fire-and-forget commands (`action`, `send_profile`, `write_raw` hex,
+  `reset`, `release_port`/`acquire_port`, `get_snapshot`); completion is
+  observed on the event stream. The flashing handshake keeps esptool in
+  Python: `release_port` holds the ESP in its bootloader (GPIO) and frees
+  the device, `acquire_port` reopens and hard-resets.
+
+  Python counterpart: `esp_serial/rust_daemon_client.py` (`RustDaemonClient`
+  transport + `MachineBridge` reactions), wired into `machine.py` behind the
+  `use_rust_serial` config flag — dial/app/frontend see zero changes, and a
+  rollback is flipping the flag back. Cross-language contract test:
+  `tests/test_rust_ipc_client.py` runs the Python client against the real
+  daemon binary in emulator mode (also on CI).
 
 ## Parity testing
 
